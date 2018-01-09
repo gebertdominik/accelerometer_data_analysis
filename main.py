@@ -110,12 +110,12 @@ random_forest_cls = RandomForestClassifier()
 mlp_cls = MLPClassifier()
 gaussian_nb_cls = GaussianNB()
 
-print('Dummy Classifier        ', sig.test_classifier(dummy_cls, features))
-print('K-Neighbors Classifier  ', sig.test_classifier(k_neighbors_cls, features))
-print('Decision Tree Classifier', sig.test_classifier(decision_tree_cls, features))
-print('Random Forest Classifier', sig.test_classifier(random_forest_cls, features))
-print('MLP Classifier          ', sig.test_classifier(mlp_cls, features))
-print('GaussianNB              ', sig.test_classifier(gaussian_nb_cls, features))
+print('Dummy Classifier        ', sig.test_and_learn_classifier(dummy_cls, features))
+print('K-Neighbors Classifier  ', sig.test_and_learn_classifier(k_neighbors_cls, features))
+print('Decision Tree Classifier', sig.test_and_learn_classifier(decision_tree_cls, features))
+print('Random Forest Classifier', sig.test_and_learn_classifier(random_forest_cls, features))
+print('MLP Classifier          ', sig.test_and_learn_classifier(mlp_cls, features))
+print('GaussianNB              ', sig.test_and_learn_classifier(gaussian_nb_cls, features))
 
 
 

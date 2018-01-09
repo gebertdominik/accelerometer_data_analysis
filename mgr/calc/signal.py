@@ -57,7 +57,7 @@ def extract_features(activity):
         yield features
 
 
-def test_classifier(classifier, features_data):
+def test_and_learn_classifier(classifier, features_data):
     activity_features = features_data[:, 1:]
     activity_markers = features_data[:, 0]
     results =[]
@@ -71,4 +71,22 @@ def test_classifier(classifier, features_data):
         np.mean(results),
         np.std(results)
     ]
+
+def test_classifier(classifier, features_data):
+    activity_features = features_data[:, 1:]
+    activity_markers = features_data[:, 0]
+    results =[]
+    loops = 10
+    for i in range(0, loops):
+        res = classifier.score(activity_features, activity_markers)
+        results.append(res)
+    return[
+        np.mean(results),
+        np.std(results)
+    ]
+
+
+
+
+
 
