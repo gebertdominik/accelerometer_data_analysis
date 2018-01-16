@@ -11,8 +11,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import datetime
 import csv
-import locale
-locale.setlocale(locale.LC_ALL, '')
 
 """ PERSON_1 - prepare data - start """
 STANDING_PERSON_1 = rd.read('mgr/data/resources/person_1/standing.csv')
@@ -48,20 +46,13 @@ with open(output_file_path_person_1, 'w') as features_file:
 
 features_person_1 = np.loadtxt('mgr/data/resources/person_1/Features.csv', delimiter=",")
 
-dummy_cls_person_1 = DummyClassifier()
-k_neighbors_cls_person_1 = KNeighborsClassifier()
-decision_tree_cls_person_1 = DecisionTreeClassifier()
-random_forest_cls_person_1 = RandomForestClassifier()
-mlp_cls_person_1 = MLPClassifier(max_iter=1000)
-gaussian_nb_cls_person_1 = GaussianNB()
-
-print('Test Classifiers on PERSON_1 learned with data collected by PERSON_1')
-print('Dummy Classifier        ', sig.test_and_learn_classifier(dummy_cls_person_1, features_person_1))
-print('K-Neighbors Classifier  ', sig.test_and_learn_classifier(k_neighbors_cls_person_1, features_person_1))
-print('Decision Tree Classifier', sig.test_and_learn_classifier(decision_tree_cls_person_1, features_person_1))
-print('Random Forest Classifier', sig.test_and_learn_classifier(random_forest_cls_person_1, features_person_1))
-print('MLP Classifier          ', sig.test_and_learn_classifier(mlp_cls_person_1, features_person_1))
-print('GaussianNB              ', sig.test_and_learn_classifier(gaussian_nb_cls_person_1, features_person_1))
+print('\nTest Classifiers on PERSON_1 learned with data collected by PERSON_1')
+print('Dummy Classifier        ', sig.test_dummy_cls_one_set(features_person_1))
+print('K-Neighbors Classifier  ', sig.test_knn_cls_one_set(features_person_1))
+print('Decision Tree Classifier', sig.test_decision_tree_cls_one_set(features_person_1))
+print('Random Forest Classifier', sig.test_random_forest_cls_one_set(features_person_1))
+print('MLP Classifier          ', sig.test_mlp_cls_one_set(features_person_1))
+print('GaussianNB              ', sig.test_gaussian_nb_cls_one_set(features_person_1))
 
 
 """ PERSON_2 - prepare data - start """
@@ -98,20 +89,13 @@ with open(output_file_path_person_2, 'w') as features_file:
 
 features_person_2 = np.loadtxt('mgr/data/resources/person_2/Features.csv', delimiter=",")
 
-dummy_cls_person_2 = DummyClassifier()
-k_neighbors_cls_person_2 = KNeighborsClassifier()
-decision_tree_cls_person_2 = DecisionTreeClassifier()
-random_forest_cls_person_2 = RandomForestClassifier()
-mlp_cls_person_2 = MLPClassifier()
-gaussian_nb_cls_person_2 = GaussianNB()
-
-print('Test Classifiers on PERSON_2 learned with data collected by PERSON_2')
-print('Dummy Classifier        ', sig.test_and_learn_classifier(dummy_cls_person_2, features_person_2))
-print('K-Neighbors Classifier  ', sig.test_and_learn_classifier(k_neighbors_cls_person_2, features_person_2))
-print('Decision Tree Classifier', sig.test_and_learn_classifier(decision_tree_cls_person_2, features_person_2))
-print('Random Forest Classifier', sig.test_and_learn_classifier(random_forest_cls_person_2, features_person_2))
-print('MLP Classifier          ', sig.test_and_learn_classifier(mlp_cls_person_2, features_person_2))
-print('GaussianNB              ', sig.test_and_learn_classifier(gaussian_nb_cls_person_2, features_person_2))
+print('\nTest Classifiers on PERSON_2 learned with data collected by PERSON_2')
+print('Dummy Classifier        ', sig.test_dummy_cls_one_set(features_person_2))
+print('K-Neighbors Classifier  ', sig.test_knn_cls_one_set(features_person_2))
+print('Decision Tree Classifier', sig.test_decision_tree_cls_one_set(features_person_2))
+print('Random Forest Classifier', sig.test_random_forest_cls_one_set(features_person_2))
+print('MLP Classifier          ', sig.test_mlp_cls_one_set(features_person_2))
+print('GaussianNB              ', sig.test_gaussian_nb_cls_one_set(features_person_2))
 
 
 """ PERSON_3 - prepare data - start """
@@ -148,20 +132,13 @@ with open(output_file_path_person_3, 'w') as features_file:
 
 features_person_3 = np.loadtxt('mgr/data/resources/person_3/Features.csv', delimiter=",")
 
-dummy_cls_person_3 = DummyClassifier()
-k_neighbors_cls_person_3 = KNeighborsClassifier()
-decision_tree_cls_person_3 = DecisionTreeClassifier()
-random_forest_cls_person_3 = RandomForestClassifier()
-mlp_cls_person_3 = MLPClassifier()
-gaussian_nb_cls_person_3 = GaussianNB()
-
-print('Test Classifiers on PERSON_3 learned with data collected by PERSON_3')
-print('Dummy Classifier        ', sig.test_and_learn_classifier(dummy_cls_person_3, features_person_3))
-print('K-Neighbors Classifier  ', sig.test_and_learn_classifier(k_neighbors_cls_person_3, features_person_3))
-print('Decision Tree Classifier', sig.test_and_learn_classifier(decision_tree_cls_person_3, features_person_3))
-print('Random Forest Classifier', sig.test_and_learn_classifier(random_forest_cls_person_3, features_person_3))
-print('MLP Classifier          ', sig.test_and_learn_classifier(mlp_cls_person_3, features_person_3))
-print('GaussianNB              ', sig.test_and_learn_classifier(gaussian_nb_cls_person_3, features_person_3))
+print('\nTest Classifiers on PERSON_3 learned with data collected by PERSON_3')
+print('Dummy Classifier        ', sig.test_dummy_cls_one_set(features_person_3))
+print('K-Neighbors Classifier  ', sig.test_knn_cls_one_set(features_person_3))
+print('Decision Tree Classifier', sig.test_decision_tree_cls_one_set(features_person_3))
+print('Random Forest Classifier', sig.test_random_forest_cls_one_set(features_person_3))
+print('MLP Classifier          ', sig.test_mlp_cls_one_set(features_person_3))
+print('GaussianNB              ', sig.test_gaussian_nb_cls_one_set(features_person_3))
 
 
 """ PERSON_4 - prepare data - start """
@@ -198,23 +175,15 @@ with open(output_file_path_person_4, 'w') as features_file:
 
 features_person_4 = np.loadtxt('mgr/data/resources/person_4/Features.csv', delimiter=",")
 
-dummy_cls_person_4 = DummyClassifier()
-k_neighbors_cls_person_4 = KNeighborsClassifier()
-decision_tree_cls_person_4 = DecisionTreeClassifier()
-random_forest_cls_person_4 = RandomForestClassifier()
-mlp_cls_person_4 = MLPClassifier()
-gaussian_nb_cls_person_4 = GaussianNB()
 
-print('Test Classifiers on PERSON_4 learned with data collected by PERSON_4')
-print('Dummy Classifier        ', sig.test_and_learn_classifier(dummy_cls_person_4, features_person_4))
-print('K-Neighbors Classifier  ', sig.test_and_learn_classifier(k_neighbors_cls_person_4, features_person_4))
-print('Decision Tree Classifier', sig.test_and_learn_classifier(decision_tree_cls_person_4, features_person_4))
-print('Random Forest Classifier', sig.test_and_learn_classifier(random_forest_cls_person_4, features_person_4))
-print('MLP Classifier          ', sig.test_and_learn_classifier(mlp_cls_person_4, features_person_4))
-print('GaussianNB              ', sig.test_and_learn_classifier(gaussian_nb_cls_person_4, features_person_4))
+print('\nTest Classifiers on PERSON_4 learned with data collected by PERSON_4')
+print('Dummy Classifier        ', sig.test_dummy_cls_one_set(features_person_4))
+print('K-Neighbors Classifier  ', sig.test_knn_cls_one_set(features_person_4))
+print('Decision Tree Classifier', sig.test_decision_tree_cls_one_set(features_person_4))
+print('Random Forest Classifier', sig.test_random_forest_cls_one_set(features_person_4))
+print('MLP Classifier          ', sig.test_mlp_cls_one_set(features_person_4))
+print('GaussianNB              ', sig.test_gaussian_nb_cls_one_set(features_person_4))
 
-
-# features_all = np.loadtxt('mgr/data/resources/all/Features_all_mag.csv', delimiter=",")
 features_all = np.concatenate([features_person_1, features_person_2, features_person_3, features_person_4])
 
 dummy_cls_all = DummyClassifier()
@@ -223,50 +192,40 @@ decision_tree_cls_all = DecisionTreeClassifier()
 random_forest_cls_all = RandomForestClassifier()
 mlp_cls_all = MLPClassifier()
 gaussian_nb_cls_all = GaussianNB()
-activity_features = features_all[:, 1:]
-activity_markers = features_all[:, 0]
-af_train, af_test, am_train, am_test = train_test_split(activity_features, activity_markers, test_size=.25)
-
-dummy_cls_all.fit(af_train, am_train)
-k_neighbors_cls_all.fit(af_train, am_train)
-decision_tree_cls_all.fit(af_train, am_train)
-random_forest_cls_all.fit(af_train, am_train)
-mlp_cls_all.fit(af_train, am_train)
-gaussian_nb_cls_all.fit(af_train, am_train)
 
 
-print('Test Classifiers on PERSON_1 learned with all data')
-print('Dummy Classifier        ', sig.test_classifier(dummy_cls_all, features_person_1))
-print('K-Neighbors Classifier  ', sig.test_classifier(k_neighbors_cls_all, features_person_1))
-print('Decision Tree Classifier', sig.test_classifier(decision_tree_cls_all, features_person_1))
-print('Random Forest Classifier', sig.test_classifier(random_forest_cls_all, features_person_1))
-print('MLP Classifier          ', sig.test_classifier(mlp_cls_all, features_person_1))
-print('GaussianNB              ', sig.test_classifier(gaussian_nb_cls_all, features_person_1))
+print('\nTest Classifiers on PERSON_1 learned with all data')
+print('Dummy Classifier        ', sig.test_and_learn_dummy_cls(features_all, features_person_1))
+print('K-Neighbors Classifier  ', sig.test_and_learn_knn_cls(features_all, features_person_1))
+print('Decision Tree Classifier', sig.test_and_learn_decision_tree_cls(features_all, features_person_1))
+print('Random Forest Classifier', sig.test_and_learn_random_forest_cls(features_all, features_person_1))
+print('MLP Classifier          ', sig.test_and_learn_mlp_cls(features_all, features_person_1))
+print('GaussianNB              ', sig.test_and_learn_gaussian_nb_cls(features_all, features_person_1))
 
-print('Test Classifiers on PERSON_2 learned with all data')
-print('Dummy Classifier        ', sig.test_classifier(dummy_cls_all, features_person_2))
-print('K-Neighbors Classifier  ', sig.test_classifier(k_neighbors_cls_all, features_person_2))
-print('Decision Tree Classifier', sig.test_classifier(decision_tree_cls_all, features_person_2))
-print('Random Forest Classifier', sig.test_classifier(random_forest_cls_all, features_person_2))
-print('MLP Classifier          ', sig.test_classifier(mlp_cls_all, features_person_2))
-print('GaussianNB              ', sig.test_classifier(gaussian_nb_cls_all, features_person_2))
+print('\nTest Classifiers on PERSON_2 learned with all data')
+print('Dummy Classifier        ', sig.test_and_learn_dummy_cls(features_all, features_person_2))
+print('K-Neighbors Classifier  ', sig.test_and_learn_knn_cls(features_all, features_person_2))
+print('Decision Tree Classifier', sig.test_and_learn_decision_tree_cls(features_all, features_person_2))
+print('Random Forest Classifier', sig.test_and_learn_random_forest_cls(features_all, features_person_2))
+print('MLP Classifier          ', sig.test_and_learn_mlp_cls(features_all, features_person_2))
+print('GaussianNB              ', sig.test_and_learn_gaussian_nb_cls(features_all, features_person_2))
 
-print('Test Classifiers on PERSON_3 learned with all data')
-print('Dummy Classifier        ', sig.test_classifier(dummy_cls_all, features_person_3))
-print('K-Neighbors Classifier  ', sig.test_classifier(k_neighbors_cls_all, features_person_3))
-print('Decision Tree Classifier', sig.test_classifier(decision_tree_cls_all, features_person_3))
-print('Random Forest Classifier', sig.test_classifier(random_forest_cls_all, features_person_3))
-print('MLP Classifier          ', sig.test_classifier(mlp_cls_all, features_person_3))
-print('GaussianNB              ', sig.test_classifier(gaussian_nb_cls_all, features_person_3))
+print('\nTest Classifiers on PERSON_3 learned with all data')
+print('Dummy Classifier        ', sig.test_and_learn_dummy_cls(features_all, features_person_3))
+print('K-Neighbors Classifier  ', sig.test_and_learn_knn_cls(features_all, features_person_3))
+print('Decision Tree Classifier', sig.test_and_learn_decision_tree_cls(features_all, features_person_3))
+print('Random Forest Classifier', sig.test_and_learn_random_forest_cls(features_all, features_person_3))
+print('MLP Classifier          ', sig.test_and_learn_mlp_cls(features_all, features_person_3))
+print('GaussianNB              ', sig.test_and_learn_gaussian_nb_cls(features_all, features_person_3))
 
 
-print('Test Classifiers on PERSON_4 learned with all data')
-print('Dummy Classifier        ', sig.test_classifier(dummy_cls_all, features_person_4))
-print('K-Neighbors Classifier  ', sig.test_classifier(k_neighbors_cls_all, features_person_4))
-print('Decision Tree Classifier', sig.test_classifier(decision_tree_cls_all, features_person_4))
-print('Random Forest Classifier', sig.test_classifier(random_forest_cls_all, features_person_4))
-print('MLP Classifier          ', sig.test_classifier(mlp_cls_all, features_person_4))
-print('GaussianNB              ', sig.test_classifier(gaussian_nb_cls_all, features_person_4))
+print('\nTest Classifiers on PERSON_4 learned with all data')
+print('Dummy Classifier        ', sig.test_and_learn_dummy_cls(features_all, features_person_4))
+print('K-Neighbors Classifier  ', sig.test_and_learn_knn_cls(features_all, features_person_4))
+print('Decision Tree Classifier', sig.test_and_learn_decision_tree_cls(features_all, features_person_4))
+print('Random Forest Classifier', sig.test_and_learn_random_forest_cls(features_all, features_person_4))
+print('MLP Classifier          ', sig.test_and_learn_mlp_cls(features_all, features_person_4))
+print('GaussianNB              ', sig.test_and_learn_gaussian_nb_cls(features_all, features_person_4))
 
 ### Sample
 """

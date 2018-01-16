@@ -10,6 +10,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.naive_bayes import GaussianNB
 
+
 def denoise(activity):
     n = 3
     b = [1 / n] * n
@@ -48,8 +49,8 @@ def window_values(axis, start, end):
         axis[start:end].var(),
         axis[start:end].min(),
         axis[start:end].max(),
-        #skew(axis[start:end]),
-        #kurtosis(axis[start:end]),
+        skew(axis[start:end]),
+        kurtosis(axis[start:end])
     ]
 
 
@@ -80,11 +81,107 @@ def test_and_learn_classifier(classifier, features_data):
     ]
 
 
+def test_dummy_cls_one_set(features_data):
+    activity_features = features_data[:, 1:]
+    activity_markers = features_data[:, 0]
+    activity_features_learn, activity_features_test, activity_markers_learn, activity_markers_test\
+        = train_test_split(activity_features, activity_markers, test_size=.25)
+
+    classifier = DummyClassifier()
+    classifier.fit(activity_features_learn, activity_markers_learn)
+    res = classifier.score(activity_features_test, activity_markers_test)
+    return res
+
+
+def test_knn_cls_one_set(features_data):
+    activity_features = features_data[:, 1:]
+    activity_markers = features_data[:, 0]
+    activity_features_learn, activity_features_test, activity_markers_learn, activity_markers_test\
+        = train_test_split(activity_features, activity_markers, test_size=.25)
+
+    classifier = KNeighborsClassifier()
+    classifier.fit(activity_features_learn, activity_markers_learn)
+    res = classifier.score(activity_features_test, activity_markers_test)
+    return res
+
+
+def test_decision_tree_cls_one_set(features_data):
+    activity_features = features_data[:, 1:]
+    activity_markers = features_data[:, 0]
+    results = []
+    loops = 20
+    for i in range(0, loops):
+        activity_features_learn, activity_features_test, activity_markers_learn, activity_markers_test \
+            = train_test_split(activity_features, activity_markers, test_size=.25)
+        classifier = DecisionTreeClassifier()
+        classifier.fit(activity_features_learn, activity_markers_learn)
+        res = classifier.score(activity_features_test, activity_markers_test)
+        results.append(res)
+    return[
+        np.mean(results),
+        np.std(results)
+    ]
+
+
+def test_random_forest_cls_one_set(features_data):
+    activity_features = features_data[:, 1:]
+    activity_markers = features_data[:, 0]
+    results = []
+    loops = 20
+    for i in range(0, loops):
+        activity_features_learn, activity_features_test, activity_markers_learn, activity_markers_test \
+            = train_test_split(activity_features, activity_markers, test_size=.25)
+        classifier = RandomForestClassifier()
+        classifier.fit(activity_features_learn, activity_markers_learn)
+        res = classifier.score(activity_features_test, activity_markers_test)
+        results.append(res)
+    return[
+        np.mean(results),
+        np.std(results)
+    ]
+
+
+def test_mlp_cls_one_set(features_data):
+    activity_features = features_data[:, 1:]
+    activity_markers = features_data[:, 0]
+    results = []
+    loops = 20
+    for i in range(0, loops):
+        activity_features_learn, activity_features_test, activity_markers_learn, activity_markers_test \
+            = train_test_split(activity_features, activity_markers, test_size=.25)
+        classifier = MLPClassifier(max_iter=1000)
+        classifier.fit(activity_features_learn, activity_markers_learn)
+        res = classifier.score(activity_features_test, activity_markers_test)
+        results.append(res)
+    return[
+        np.mean(results),
+        np.std(results)
+    ]
+
+
+def test_gaussian_nb_cls_one_set(features_data):
+    activity_features = features_data[:, 1:]
+    activity_markers = features_data[:, 0]
+    results = []
+    loops = 20
+    for i in range(0, loops):
+        activity_features_learn, activity_features_test, activity_markers_learn, activity_markers_test \
+            = train_test_split(activity_features, activity_markers, test_size=.25)
+        classifier = GaussianNB()
+        classifier.fit(activity_features_learn, activity_markers_learn)
+        res = classifier.score(activity_features_test, activity_markers_test)
+        results.append(res)
+    return[
+        np.mean(results),
+        np.std(results)
+    ]
+
+
 def test_classifier(classifier, features_data):
     activity_features = features_data[:, 1:]
     activity_markers = features_data[:, 0]
     results =[]
-    loops = 1
+    loops = 20
     for i in range(0, loops):
         res = classifier.score(activity_features, activity_markers)
         results.append(res)
@@ -96,18 +193,39 @@ def test_classifier(classifier, features_data):
     ]
 
 
-def test_and_learn_knn(features_learn, features_test ):
+def test_and_learn_dummy_cls(features_learn, features_test):
     activity_features_learn = features_learn[:, 1:]
     activity_markers_learn = features_learn[:, 0]
     activity_features_test = features_test[:, 1:]
     activity_markers_test = features_test[:, 0]
-    results =[]
+    classifier = DummyClassifier()
+    classifier.fit(activity_features_learn, activity_markers_learn)
+    res = classifier.score(activity_features_test, activity_markers_test)
+    return res
+
+
+def test_and_learn_knn_cls(features_learn, features_test):
+    activity_features_learn = features_learn[:, 1:]
+    activity_markers_learn = features_learn[:, 0]
+    activity_features_test = features_test[:, 1:]
+    activity_markers_test = features_test[:, 0]
+    classifier = KNeighborsClassifier()
+    classifier.fit(activity_features_learn, activity_markers_learn)
+    res = classifier.score(activity_features_test, activity_markers_test)
+    return res
+
+
+def test_and_learn_decision_tree_cls(features_learn, features_test):
+    activity_features_learn = features_learn[:, 1:]
+    activity_markers_learn = features_learn[:, 0]
+    activity_features_test = features_test[:, 1:]
+    activity_markers_test = features_test[:, 0]
+    results = []
     loops = 20
     for i in range(0, loops):
-        classifier = KNeighborsClassifier()
+        classifier = DecisionTreeClassifier()
         classifier.fit(activity_features_learn, activity_markers_learn)
         res = classifier.score(activity_features_test, activity_markers_test)
-        print(res)
         results.append(res)
     return[
         np.mean(results),
@@ -115,6 +233,58 @@ def test_and_learn_knn(features_learn, features_test ):
     ]
 
 
+def test_and_learn_random_forest_cls(features_learn, features_test):
+    activity_features_learn = features_learn[:, 1:]
+    activity_markers_learn = features_learn[:, 0]
+    activity_features_test = features_test[:, 1:]
+    activity_markers_test = features_test[:, 0]
+    results = []
+    loops = 20
+    for i in range(0, loops):
+        classifier = RandomForestClassifier()
+        classifier.fit(activity_features_learn, activity_markers_learn)
+        res = classifier.score(activity_features_test, activity_markers_test)
+        results.append(res)
+    return[
+        np.mean(results),
+        np.std(results)
+    ]
+
+
+def test_and_learn_mlp_cls(features_learn, features_test):
+    activity_features_learn = features_learn[:, 1:]
+    activity_markers_learn = features_learn[:, 0]
+    activity_features_test = features_test[:, 1:]
+    activity_markers_test = features_test[:, 0]
+    results = []
+    loops = 20
+    for i in range(0, loops):
+        classifier = MLPClassifier(max_iter=1000)
+        classifier.fit(activity_features_learn, activity_markers_learn)
+        res = classifier.score(activity_features_test, activity_markers_test)
+        results.append(res)
+    return[
+        np.mean(results),
+        np.std(results)
+    ]
+
+
+def test_and_learn_gaussian_nb_cls(features_learn, features_test):
+    activity_features_learn = features_learn[:, 1:]
+    activity_markers_learn = features_learn[:, 0]
+    activity_features_test = features_test[:, 1:]
+    activity_markers_test = features_test[:, 0]
+    results = []
+    loops = 20
+    for i in range(0, loops):
+        classifier = GaussianNB()
+        classifier.fit(activity_features_learn, activity_markers_learn)
+        res = classifier.score(activity_features_test, activity_markers_test)
+        results.append(res)
+    return[
+        np.mean(results),
+        np.std(results)
+    ]
 
 
 
