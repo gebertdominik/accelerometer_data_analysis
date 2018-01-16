@@ -6,11 +6,13 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.naive_bayes import GaussianNB
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import numpy as np
 import datetime
 import csv
+import locale
+locale.setlocale(locale.LC_ALL, '')
 
 """ PERSON_1 - prepare data - start """
 STANDING_PERSON_1 = rd.read('mgr/data/resources/person_1/standing.csv')
@@ -212,7 +214,8 @@ print('MLP Classifier          ', sig.test_and_learn_classifier(mlp_cls_person_4
 print('GaussianNB              ', sig.test_and_learn_classifier(gaussian_nb_cls_person_4, features_person_4))
 
 
-features_all = np.loadtxt('mgr/data/resources/all/Features_all.csv', delimiter=",")
+# features_all = np.loadtxt('mgr/data/resources/all/Features_all_mag.csv', delimiter=",")
+features_all = np.concatenate([features_person_1, features_person_2, features_person_3, features_person_4])
 
 dummy_cls_all = DummyClassifier()
 k_neighbors_cls_all = KNeighborsClassifier()
@@ -220,10 +223,9 @@ decision_tree_cls_all = DecisionTreeClassifier()
 random_forest_cls_all = RandomForestClassifier()
 mlp_cls_all = MLPClassifier()
 gaussian_nb_cls_all = GaussianNB()
-
 activity_features = features_all[:, 1:]
 activity_markers = features_all[:, 0]
-af_train, af_test, am_train, am_test = train_test_split(activity_features, activity_markers, test_size=.35)
+af_train, af_test, am_train, am_test = train_test_split(activity_features, activity_markers, test_size=.25)
 
 dummy_cls_all.fit(af_train, am_train)
 k_neighbors_cls_all.fit(af_train, am_train)
@@ -267,7 +269,7 @@ print('MLP Classifier          ', sig.test_classifier(mlp_cls_all, features_pers
 print('GaussianNB              ', sig.test_classifier(gaussian_nb_cls_all, features_person_4))
 
 ### Sample
-
+"""
 activity_features = np.loadtxt('mgr/data/resources/Features_activity.csv', delimiter=",")
 print("Features end")
 print(datetime.datetime.now())
@@ -306,3 +308,4 @@ plt.legend(loc='best')
 print("Show")
 print(datetime.datetime.now())
 plt.show()
+"""

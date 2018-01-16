@@ -7,52 +7,42 @@ import mgr.data.readrawdata as rd
 import mgr.visualization.visualize as vis
 import mgr.calc.signal as sig
 import numpy as np
-"""mu, sigma = 0, 500
+from prepare_data import *
 
-x = np.arange(1, 100, 0.1)  # x axis
-z = np.random.normal(mu, sigma, len(x))  # noise
-y = x ** 2 + z # data
-plt.plot(x, y, linewidth=2, linestyle="-", c="b")  # it include some noise
-plt.show()
+features_person_1 = np.loadtxt(features_file_person_1, delimiter=",")
+features_person_2 = np.loadtxt(features_file_person_2, delimiter=",")
+features_person_3 = np.loadtxt(features_file_person_3, delimiter=",")
+features_person_4 = np.loadtxt(features_file_person_4, delimiter=",")
 
+features_all = np.concatenate([features_person_1, features_person_2, features_person_3, features_person_4])
+features_person_1_2_3 = np.concatenate([features_person_1, features_person_2, features_person_3])
+features_person_1_2_4 = np.concatenate([features_person_1, features_person_2, features_person_4])
+features_person_1_3_4 = np.concatenate([features_person_1, features_person_3, features_person_4])
+features_person_2_3_4 = np.concatenate([features_person_2, features_person_3, features_person_4])
 
-n = 15  # the larger n is, the smoother curve will be
-b = [1.0 / n] * n
-a = 1
-yy = lfilter(b,a,y)
-plt.plot(x, yy, linewidth=2, linestyle="-", c="b")  # smooth by filter
-plt.show()
-"""
-# WALKING = rd.read('mgr/data/resources/20160109_lt.csv')
-STANDING = rd.read('mgr/data/resources/ok/standing.csv')
-
-STANDING['magnitude'] = sig.magnitude(STANDING)
-#vis.graph_magnitude(STANDING, 'red')
-
-
-def denoise(activity):
-    n = 3
-    b = [1/n] * n
-    a = 1
-    activity['magnituded'] = filtfilt(b,a,activity['yAxis'],padtype='constant')
-
-
-denoise(STANDING)
-
-
-def graph_magnitude_without_noise(activity):
-
-    fig, (ax0,ax1) = plt.subplots(nrows=2, figsize=(15, 10), sharex=True)
-    vis.plot_graph(ax0, activity['timestamp'], activity['yAxis'], 'with noise', 'red')
-    vis.plot_graph(ax1, activity['timestamp'], activity['magnituded'], 'without noise filtfilt', 'red')
-    plt.subplots_adjust(hspace=0.2)
-    plt.show()
-
-#vis.graph_activity(WALKING)
-#print("printing")
-#graph_magnitude_without_noise(WALKING)
-graph_magnitude_without_noise(STANDING)
-
-
+loops = 20
+#for i in range(0, loops):
+dummy_cls = DummyClassifier()
+k_neighbors_cls= KNeighborsClassifier()
+decision_tree_cls = DecisionTreeClassifier()
+random_forest_cls = RandomForestClassifier()
+mlp_cls = MLPClassifier()
+gaussian_nb_cls = GaussianNB()
+activity_features = features_person_1_2_3[:, 1:]
+activity_markers = features_person_1_2_3[:, 0]
+af_train, af_test, am_train, am_test = train_test_split(activity_features, activity_markers, test_size=.25)
+dummy_cls.fit(af_train, am_train)
+k_neighbors_cls.fit(af_train, am_train)
+decision_tree_cls.fit(af_train, am_train)
+random_forest_cls.fit(af_train, am_train)
+mlp_cls.fit(af_train, am_train)
+gaussian_nb_cls.fit(af_train, am_train)
+print('Test Classifiers on PERSON_1 learned with 2,3,4')
+#print('Dummy Classifier        ', sig.test_classifier(dummy_cls, features_person_4))
+print('K-Neighbors Classifier  ', sig.test_and_learn_knn(features_person_1_2_3, features_person_4))
+#print('Decision Tree Classifier', sig.test_classifier(decision_tree_cls, features_person_4))
+#print('Random Forest Classifier', sig.test_classifier(random_forest_cls, features_person_4))
+#print('MLP Classifier          ', sig.test_classifier(mlp_cls, features_person_4))
+#print('GaussianNB              ', sig.test_classifier(gaussian_nb_cls, features_person_4))
 
 
