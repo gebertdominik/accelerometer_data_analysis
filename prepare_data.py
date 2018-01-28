@@ -12,6 +12,12 @@ import numpy as np
 import datetime
 import csv
 
+STANDING_COLOR = 'gray'
+WALKING_COLOR = 'green'
+DOWNSTAIRS_COLOR = 'brown'
+UPSTAIRS_COLOR = 'blue'
+RUNNING_COLOR = 'red'
+
 """ PERSON_1 - prepare data - start """
 STANDING_PERSON_1 = rd.read('mgr/data/resources/person_1/standing.csv')
 sig.denoise(STANDING_PERSON_1)
@@ -35,7 +41,7 @@ RUNNING_PERSON_1['magnitude'] = sig.magnitude(RUNNING_PERSON_1)
 
 
 activities_person_1 = [STANDING_PERSON_1, WALKING_PERSON_1, DOWNSTAIRS_PERSON_1, UPSTAIRS_PERSON_1, RUNNING_PERSON_1]
-features_file_person_1 = 'mgr/data/resources/person_1/Features.csv'
+features_file_person_1 = 'mgr/data/features/person_1/Features.csv'
 
 with open(features_file_person_1, 'w') as features_file:
     rows = csv.writer(features_file)
@@ -69,7 +75,7 @@ RUNNING_PERSON_2['magnitude'] = sig.magnitude(RUNNING_PERSON_2)
 
 
 activities_person_2 = [STANDING_PERSON_2, WALKING_PERSON_2, DOWNSTAIRS_PERSON_2, UPSTAIRS_PERSON_2, RUNNING_PERSON_2]
-features_file_person_2 = 'mgr/data/resources/person_2/Features.csv'
+features_file_person_2 = 'mgr/data/features/person_2/Features.csv'
 
 with open(features_file_person_2, 'w') as features_file:
     rows = csv.writer(features_file)
@@ -103,7 +109,7 @@ RUNNING_PERSON_3['magnitude'] = sig.magnitude(RUNNING_PERSON_3)
 
 
 activities_person_3 = [STANDING_PERSON_3, WALKING_PERSON_3, DOWNSTAIRS_PERSON_3, UPSTAIRS_PERSON_3, RUNNING_PERSON_3]
-features_file_person_3 = 'mgr/data/resources/person_3/Features.csv'
+features_file_person_3 = 'mgr/data/features/person_3/Features.csv'
 
 with open(features_file_person_3, 'w') as features_file:
     rows = csv.writer(features_file)
@@ -137,7 +143,7 @@ RUNNING_PERSON_4['magnitude'] = sig.magnitude(RUNNING_PERSON_4)
 """ PERSON_4 - prepare data - stop """
 
 activities_person_4 = [STANDING_PERSON_4, WALKING_PERSON_4, DOWNSTAIRS_PERSON_4, UPSTAIRS_PERSON_4, RUNNING_PERSON_4]
-features_file_person_4 = 'mgr/data/resources/person_4/Features.csv'
+features_file_person_4 = 'mgr/data/features/person_4/Features.csv'
 
 with open(features_file_person_4, 'w') as features_file:
     rows = csv.writer(features_file)
