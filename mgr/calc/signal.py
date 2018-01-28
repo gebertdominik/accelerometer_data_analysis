@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.stats import skew, kurtosis
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 import math
 from scipy.signal import filtfilt
 from sklearn.ensemble import RandomForestClassifier
