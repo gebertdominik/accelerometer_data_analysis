@@ -8,13 +8,13 @@ ACTIVITY['magnitude'] = sig.magnitude(ACTIVITY)
 print("Features start")
 print(datetime.datetime.now())
 
-"""output_file_path = 'mgr/data/features/person_3/Features_mixed_activity.csv'
+output_file_path = 'mgr/data/features/person_3/Features_mixed_activity.csv'
 
 with open(output_file_path, 'w') as features_file:
     rows = csv.writer(features_file)
     for f in sig.extract_features(ACTIVITY):
         rows.writerow(f)
-"""
+
 activity_features = np.loadtxt('mgr/data/features/person_3/Features_mixed_activity.csv', delimiter=",")
 print("Features end")
 print(datetime.datetime.now())
@@ -23,7 +23,7 @@ print(datetime.datetime.now())
 features_person_3 = np.loadtxt(features_file_person_3, delimiter=",")
 activity_features_learn = features_person_3[:, 1:]
 activity_markers_learn = features_person_3[:, 0]
-cls = MLPClassifier()
+cls = RandomForestClassifier()
 cls.fit(activity_features_learn, activity_markers_learn)
 
 #DRAW - WORKING
