@@ -37,27 +37,34 @@ def divide_signal(df, size=100):
 def window_values(axis, start, end):
     start = int(start)
     end = int(end)
-    p25 = np.percentile(axis, 25)
-    median = np.percentile(axis, 50)
-    p75 = np.percentile(axis, 75)
+    p25 = np.percentile(axis[start:end], 25)
+    median = np.percentile(axis[start:end], 50)
+    p75 = np.percentile(axis[start:end], 75)
+    std = axis[start:end].std()
+    var = axis[start:end].var()
+    if math.isnan(var):
+       std = 0
+       var = 0
     return [
-        axis[start:end].mean(),
         p25,
+        kurtosis(axis[start:end]),
         median,
-        p75,
-        axis[start:end].std(),
-        axis[start:end].var(),
         axis[start:end].min(),
+        axis[start:end].mean(),
+        p75,
+        std,
+        var,
         axis[start:end].max(),
         skew(axis[start:end]),
-        kurtosis(axis[start:end])
     ]
 
 
 def extract_features(activity):
     for (start, end) in divide_signal(activity['timestamp']):
+        #activity_values = ['xAxis', 'yAxis', 'zAxis']
+        #activity_values = ['magnitude']
         activity_values = ['xAxis', 'yAxis', 'zAxis', 'magnitude']
-       # activity_values = ['magnitude']
+
 
         features = []
         for axis in activity_values:
@@ -77,7 +84,9 @@ def test_and_learn_classifier(classifier, features_data):
         results.append(res)
     return[
         np.mean(results),
-        np.std(results)
+        np.std(results),
+        np.min(results),
+        np.max(results)
     ]
 
 
@@ -188,8 +197,6 @@ def test_classifier(classifier, features_data):
     return[
         np.mean(results),
         np.std(results),
-        np.min(results),
-        np.max(results)
     ]
 
 
@@ -247,7 +254,9 @@ def test_and_learn_random_forest_cls(features_learn, features_test):
         results.append(res)
     return[
         np.mean(results),
-        np.std(results)
+        np.std(results),
+        np.min(results),
+        np.max(results)
     ]
 
 
@@ -285,7 +294,3 @@ def test_and_learn_gaussian_nb_cls(features_learn, features_test):
         np.mean(results),
         np.std(results)
     ]
-
-
-
-
