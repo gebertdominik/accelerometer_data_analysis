@@ -1,7 +1,6 @@
 import mgr.data.readrawdata as rd
 import mgr.calc.signal as sig
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.dummy import DummyClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
@@ -14,23 +13,18 @@ import csv
 
 """ PERSON_1 - prepare data - start """
 STANDING_PERSON_1 = rd.read('mgr/data/resources/person_1/standing.csv')
-sig.denoise(STANDING_PERSON_1)
 STANDING_PERSON_1['magnitude'] = sig.magnitude(STANDING_PERSON_1)
 
 WALKING_PERSON_1 = rd.read('mgr/data/resources/person_1/walking.csv')
-sig.denoise(WALKING_PERSON_1)
 WALKING_PERSON_1['magnitude'] = sig.magnitude(WALKING_PERSON_1)
 
 DOWNSTAIRS_PERSON_1 = rd.read('mgr/data/resources/person_1/downstairs.csv')
-sig.denoise(DOWNSTAIRS_PERSON_1)
 DOWNSTAIRS_PERSON_1['magnitude'] = sig.magnitude(DOWNSTAIRS_PERSON_1)
 
 UPSTAIRS_PERSON_1 = rd.read('mgr/data/resources/person_1/upstairs.csv')
-sig.denoise(UPSTAIRS_PERSON_1)
 UPSTAIRS_PERSON_1['magnitude'] = sig.magnitude(UPSTAIRS_PERSON_1)
 
 RUNNING_PERSON_1 = rd.read('mgr/data/resources/person_1/running.csv')
-sig.denoise(RUNNING_PERSON_1)
 RUNNING_PERSON_1['magnitude'] = sig.magnitude(RUNNING_PERSON_1)
 
 """ PERSON_1 - prepare data - stop """
@@ -47,7 +41,6 @@ with open(output_file_path_person_1, 'w') as features_file:
 features_person_1 = np.loadtxt('mgr/data/features/person_1/Features.csv', delimiter=",")
 
 print('\nTest Classifiers on PERSON_1 learned with data collected by PERSON_1')
-print('Dummy Classifier        ', sig.test_dummy_cls_one_set(features_person_1))
 print('K-Neighbors Classifier  ', sig.test_knn_cls_one_set(features_person_1))
 print('Decision Tree Classifier', sig.test_decision_tree_cls_one_set(features_person_1))
 print('Random Forest Classifier', sig.test_random_forest_cls_one_set(features_person_1))
@@ -57,23 +50,18 @@ print('GaussianNB              ', sig.test_gaussian_nb_cls_one_set(features_pers
 
 """ PERSON_2 - prepare data - start """
 STANDING_PERSON_2 = rd.read('mgr/data/resources/person_2/standing.csv')
-sig.denoise(STANDING_PERSON_2)
 STANDING_PERSON_2['magnitude'] = sig.magnitude(STANDING_PERSON_2)
 
 WALKING_PERSON_2 = rd.read('mgr/data/resources/person_2/walking.csv')
-sig.denoise(WALKING_PERSON_2)
 WALKING_PERSON_2['magnitude'] = sig.magnitude(WALKING_PERSON_2)
 
 DOWNSTAIRS_PERSON_2 = rd.read('mgr/data/resources/person_2/downstairs.csv')
-sig.denoise(DOWNSTAIRS_PERSON_2)
 DOWNSTAIRS_PERSON_2['magnitude'] = sig.magnitude(DOWNSTAIRS_PERSON_2)
 
 UPSTAIRS_PERSON_2 = rd.read('mgr/data/resources/person_2/upstairs.csv')
-sig.denoise(UPSTAIRS_PERSON_2)
 UPSTAIRS_PERSON_2['magnitude'] = sig.magnitude(UPSTAIRS_PERSON_2)
 
 RUNNING_PERSON_2 = rd.read('mgr/data/resources/person_2/running.csv')
-sig.denoise(RUNNING_PERSON_2)
 RUNNING_PERSON_2['magnitude'] = sig.magnitude(RUNNING_PERSON_2)
 
 """ PERSON_2 - prepare data - stop """
@@ -90,7 +78,6 @@ with open(output_file_path_person_2, 'w') as features_file:
 features_person_2 = np.loadtxt('mgr/data/features/person_2/Features.csv', delimiter=",")
 
 print('\nTest Classifiers on PERSON_2 learned with data collected by PERSON_2')
-print('Dummy Classifier        ', sig.test_dummy_cls_one_set(features_person_2))
 print('K-Neighbors Classifier  ', sig.test_knn_cls_one_set(features_person_2))
 print('Decision Tree Classifier', sig.test_decision_tree_cls_one_set(features_person_2))
 print('Random Forest Classifier', sig.test_random_forest_cls_one_set(features_person_2))
@@ -100,23 +87,18 @@ print('GaussianNB              ', sig.test_gaussian_nb_cls_one_set(features_pers
 
 """ PERSON_3 - prepare data - start """
 STANDING_PERSON_3 = rd.read('mgr/data/resources/person_3/standing.csv')
-sig.denoise(STANDING_PERSON_3)
 STANDING_PERSON_3['magnitude'] = sig.magnitude(STANDING_PERSON_3)
 
 WALKING_PERSON_3 = rd.read('mgr/data/resources/person_3/walking.csv')
-sig.denoise(WALKING_PERSON_3)
 WALKING_PERSON_3['magnitude'] = sig.magnitude(WALKING_PERSON_3)
 
 DOWNSTAIRS_PERSON_3 = rd.read('mgr/data/resources/person_3/downstairs.csv')
-sig.denoise(DOWNSTAIRS_PERSON_3)
 DOWNSTAIRS_PERSON_3['magnitude'] = sig.magnitude(DOWNSTAIRS_PERSON_3)
 
 UPSTAIRS_PERSON_3 = rd.read('mgr/data/resources/person_3/upstairs.csv')
-sig.denoise(UPSTAIRS_PERSON_3)
 UPSTAIRS_PERSON_3['magnitude'] = sig.magnitude(UPSTAIRS_PERSON_3)
 
 RUNNING_PERSON_3 = rd.read('mgr/data/resources/person_3/running.csv')
-sig.denoise(RUNNING_PERSON_3)
 RUNNING_PERSON_3['magnitude'] = sig.magnitude(RUNNING_PERSON_3)
 
 """ PERSON_3 - prepare data - stop """
@@ -133,7 +115,6 @@ with open(output_file_path_person_3, 'w') as features_file:
 features_person_3 = np.loadtxt('mgr/data/features/person_3/Features.csv', delimiter=",")
 
 print('\nTest Classifiers on PERSON_3 learned with data collected by PERSON_3')
-print('Dummy Classifier        ', sig.test_dummy_cls_one_set(features_person_3))
 print('K-Neighbors Classifier  ', sig.test_knn_cls_one_set(features_person_3))
 print('Decision Tree Classifier', sig.test_decision_tree_cls_one_set(features_person_3))
 print('Random Forest Classifier', sig.test_random_forest_cls_one_set(features_person_3))
@@ -143,23 +124,18 @@ print('GaussianNB              ', sig.test_gaussian_nb_cls_one_set(features_pers
 
 """ PERSON_4 - prepare data - start """
 STANDING_PERSON_4 = rd.read('mgr/data/resources/person_4/standing.csv')
-sig.denoise(STANDING_PERSON_4)
 STANDING_PERSON_4['magnitude'] = sig.magnitude(STANDING_PERSON_4)
 
 WALKING_PERSON_4 = rd.read('mgr/data/resources/person_4/walking.csv')
-sig.denoise(WALKING_PERSON_4)
 WALKING_PERSON_4['magnitude'] = sig.magnitude(WALKING_PERSON_4)
 
 DOWNSTAIRS_PERSON_4 = rd.read('mgr/data/resources/person_4/downstairs.csv')
-sig.denoise(DOWNSTAIRS_PERSON_4)
 DOWNSTAIRS_PERSON_4['magnitude'] = sig.magnitude(DOWNSTAIRS_PERSON_4)
 
 UPSTAIRS_PERSON_4 = rd.read('mgr/data/resources/person_4/upstairs.csv')
-sig.denoise(UPSTAIRS_PERSON_4)
 UPSTAIRS_PERSON_4['magnitude'] = sig.magnitude(UPSTAIRS_PERSON_4)
 
 RUNNING_PERSON_4 = rd.read('mgr/data/resources/person_4/running.csv')
-sig.denoise(RUNNING_PERSON_4)
 RUNNING_PERSON_4['magnitude'] = sig.magnitude(RUNNING_PERSON_4)
 
 """ PERSON_4 - prepare data - stop """
@@ -177,7 +153,6 @@ features_person_4 = np.loadtxt('mgr/data/features/person_4/Features.csv', delimi
 
 
 print('\nTest Classifiers on PERSON_4 learned with data collected by PERSON_4')
-print('Dummy Classifier        ', sig.test_dummy_cls_one_set(features_person_4))
 print('K-Neighbors Classifier  ', sig.test_knn_cls_one_set(features_person_4))
 print('Decision Tree Classifier', sig.test_decision_tree_cls_one_set(features_person_4))
 print('Random Forest Classifier', sig.test_random_forest_cls_one_set(features_person_4))
@@ -186,7 +161,6 @@ print('GaussianNB              ', sig.test_gaussian_nb_cls_one_set(features_pers
 
 features_all = np.concatenate([features_person_1, features_person_2, features_person_3, features_person_4])
 
-dummy_cls_all = DummyClassifier()
 k_neighbors_cls_all = KNeighborsClassifier()
 decision_tree_cls_all = DecisionTreeClassifier()
 random_forest_cls_all = RandomForestClassifier()
@@ -195,7 +169,6 @@ gaussian_nb_cls_all = GaussianNB()
 
 
 print('\nTest Classifiers on PERSON_1 learned with all data')
-print('Dummy Classifier        ', sig.test_and_learn_dummy_cls(features_all, features_person_1))
 print('K-Neighbors Classifier  ', sig.test_and_learn_knn_cls(features_all, features_person_1))
 print('Decision Tree Classifier', sig.test_and_learn_decision_tree_cls(features_all, features_person_1))
 print('Random Forest Classifier', sig.test_and_learn_random_forest_cls(features_all, features_person_1))
@@ -203,7 +176,6 @@ print('MLP Classifier          ', sig.test_and_learn_mlp_cls(features_all, featu
 print('GaussianNB              ', sig.test_and_learn_gaussian_nb_cls(features_all, features_person_1))
 
 print('\nTest Classifiers on PERSON_2 learned with all data')
-print('Dummy Classifier        ', sig.test_and_learn_dummy_cls(features_all, features_person_2))
 print('K-Neighbors Classifier  ', sig.test_and_learn_knn_cls(features_all, features_person_2))
 print('Decision Tree Classifier', sig.test_and_learn_decision_tree_cls(features_all, features_person_2))
 print('Random Forest Classifier', sig.test_and_learn_random_forest_cls(features_all, features_person_2))
@@ -211,7 +183,6 @@ print('MLP Classifier          ', sig.test_and_learn_mlp_cls(features_all, featu
 print('GaussianNB              ', sig.test_and_learn_gaussian_nb_cls(features_all, features_person_2))
 
 print('\nTest Classifiers on PERSON_3 learned with all data')
-print('Dummy Classifier        ', sig.test_and_learn_dummy_cls(features_all, features_person_3))
 print('K-Neighbors Classifier  ', sig.test_and_learn_knn_cls(features_all, features_person_3))
 print('Decision Tree Classifier', sig.test_and_learn_decision_tree_cls(features_all, features_person_3))
 print('Random Forest Classifier', sig.test_and_learn_random_forest_cls(features_all, features_person_3))
@@ -220,7 +191,6 @@ print('GaussianNB              ', sig.test_and_learn_gaussian_nb_cls(features_al
 
 
 print('\nTest Classifiers on PERSON_4 learned with all data')
-print('Dummy Classifier        ', sig.test_and_learn_dummy_cls(features_all, features_person_4))
 print('K-Neighbors Classifier  ', sig.test_and_learn_knn_cls(features_all, features_person_4))
 print('Decision Tree Classifier', sig.test_and_learn_decision_tree_cls(features_all, features_person_4))
 print('Random Forest Classifier', sig.test_and_learn_random_forest_cls(features_all, features_person_4))
