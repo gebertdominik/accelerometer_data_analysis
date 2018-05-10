@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.stats import skew, kurtosis
+from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split
 import math
 from scipy.signal import filtfilt
@@ -9,15 +10,6 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.naive_bayes import GaussianNB
-
-
-def denoise(activity):
-    n = 3
-    b = [1 / n] * n
-    a = 1
-    activity['xAxis'] = filtfilt(b, a, activity['xAxis'])
-    activity['yAxis'] = filtfilt(b, a, activity['yAxis'])
-    activity['zAxis'] = filtfilt(b, a, activity['zAxis'])
 
 
 def magnitude(activity):
@@ -61,8 +53,8 @@ def window_values(axis, start, end):
 
 def extract_features(activity):
     for (start, end) in divide_signal(activity['timestamp']):
-        #activity_values = ['xAxis', 'yAxis', 'zAxis']
-        #activity_values = ['magnitude']
+        # activity_values = ['xAxis', 'yAxis', 'zAxis']
+        # activity_values = ['magnitude']
         activity_values = ['xAxis', 'yAxis', 'zAxis', 'magnitude']
 
 
@@ -274,7 +266,9 @@ def test_and_learn_mlp_cls(features_learn, features_test):
         results.append(res)
     return[
         np.mean(results),
-        np.std(results)
+        np.std(results),
+        np.min(results),
+        np.max(results)
     ]
 
 
