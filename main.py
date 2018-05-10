@@ -42,22 +42,15 @@ vis.graph_activity(UPSTAIRS, UPSTAIRS_COLOR, 'Upstairs')
 RUNNING = rd.read('mgr/data/resources/person_1/running.csv')
 vis.graph_activity(RUNNING, RUNNING_COLOR, 'Running')
 
-# Step 2 - remove noise from data and draw a graphs
 
-#Denoise the activities
-sig.denoise(STANDING)
-sig.denoise(WALKING)
-sig.denoise(DOWNSTAIRS)
-sig.denoise(UPSTAIRS)
-sig.denoise(RUNNING)
 
 #Draw a graphs of denoised activities
 
-vis.graph_activity(STANDING, STANDING_COLOR, 'Standing - without noise')
-vis.graph_activity(WALKING, WALKING_COLOR, 'Walking - without noise')
-vis.graph_activity(DOWNSTAIRS, DOWNSTAIRS_COLOR, 'Downstairs - without noise')
-vis.graph_activity(UPSTAIRS, UPSTAIRS_COLOR, 'Upstairs - without noise')
-vis.graph_activity(RUNNING, RUNNING_COLOR, 'Running - without noise')
+#vis.graph_activity(STANDING, STANDING_COLOR, 'Standing - without noise')
+#vis.graph_activity(WALKING, WALKING_COLOR, 'Walking - without noise')
+#vis.graph_activity(DOWNSTAIRS, DOWNSTAIRS_COLOR, 'Downstairs - without noise')
+#vis.graph_activity(UPSTAIRS, UPSTAIRS_COLOR, 'Upstairs - without noise')
+#vis.graph_activity(RUNNING, RUNNING_COLOR, 'Running - without noise')
 
 # Step 3 - calculate magnitude and draw a graphs
 
@@ -70,19 +63,19 @@ RUNNING['magnitude'] = sig.magnitude(RUNNING)
 
 
 #Draw a graphs of magnitudes
-vis.graph_magnitude(STANDING, STANDING_COLOR, 'Standing - magnitude')
-vis.graph_magnitude(WALKING, WALKING_COLOR, 'Walking - magnitude')
-vis.graph_magnitude(DOWNSTAIRS, DOWNSTAIRS_COLOR, 'Downstairs - magnitude')
-vis.graph_magnitude(UPSTAIRS, UPSTAIRS_COLOR, 'Upstairs - magnitude')
-vis.graph_magnitude(RUNNING, RUNNING_COLOR, 'Running - magnitude')
+vis.graph_magnitude(STANDING, STANDING_COLOR)
+vis.graph_magnitude(WALKING, WALKING_COLOR)
+vis.graph_magnitude(DOWNSTAIRS, DOWNSTAIRS_COLOR)
+vis.graph_magnitude(UPSTAIRS, UPSTAIRS_COLOR)
+vis.graph_magnitude(RUNNING, RUNNING_COLOR)
 
 # Step 4 - draw divided signal
 
-vis.graph_divided_signal(STANDING, STANDING_COLOR, 'Standing - divided')
-vis.graph_divided_signal(WALKING, WALKING_COLOR, 'Walking - divided')
-vis.graph_divided_signal(DOWNSTAIRS, DOWNSTAIRS_COLOR, 'Downstairs - divided')
-vis.graph_divided_signal(UPSTAIRS, UPSTAIRS_COLOR, 'Upstairs - divided')
-vis.graph_divided_signal(RUNNING, RUNNING_COLOR, 'Running - divided')
+vis.graph_divided_signal(STANDING, STANDING_COLOR)
+vis.graph_divided_signal(WALKING, WALKING_COLOR)
+vis.graph_divided_signal(DOWNSTAIRS, DOWNSTAIRS_COLOR)
+vis.graph_divided_signal(UPSTAIRS, UPSTAIRS_COLOR)
+vis.graph_divided_signal(RUNNING, RUNNING_COLOR)
 """
 
 # Step 5 - extract features
