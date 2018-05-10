@@ -2,7 +2,6 @@ from prepare_data import *
 
 print(datetime.datetime.now())
 ACTIVITY = rd.read('mgr/data/resources/person_3/mixed_activity.csv')
-sig.denoise(ACTIVITY)
 ACTIVITY['magnitude'] = sig.magnitude(ACTIVITY)
 
 print("Features start")
@@ -46,13 +45,14 @@ running = data[data[:, 1] == 4]
 dot_size = 3
 print("Printing")
 print(datetime.datetime.now())
-plt.scatter(standing[:, 0], standing[:,1], dot_size, c=STANDING_COLOR, label='standing')
-plt.scatter(walking[:, 0], walking[:,1], dot_size, c=WALKING_COLOR, label='walking')
-plt.scatter(downstairs[:, 0], downstairs[:,1], dot_size, c=DOWNSTAIRS_COLOR, label='downstairs')
-plt.scatter(upstairs[:, 0], upstairs[:, 1], dot_size, c=UPSTAIRS_COLOR, label='upstairs')
-plt.scatter(running[:, 0], running[:,1], dot_size, c=RUNNING_COLOR, label='running')
+plt.scatter(standing[:, 0], standing[:,1], dot_size, c=STANDING_COLOR, label='stanie')
+plt.scatter(walking[:, 0], walking[:,1], dot_size, c=WALKING_COLOR, label='chodzenie')
+plt.scatter(downstairs[:, 0], downstairs[:,1], dot_size, c=DOWNSTAIRS_COLOR, label='schodzenie ze schodow')
+plt.scatter(upstairs[:, 0], upstairs[:, 1], dot_size, c=UPSTAIRS_COLOR, label='wchodzenie po schodach')
+plt.scatter(running[:, 0], running[:,1], dot_size, c=RUNNING_COLOR, label='bieganie')
 plt.legend(loc='best')
 print("Show")
 print(datetime.datetime.now())
+plt.tight_layout()
 plt.show()
 
